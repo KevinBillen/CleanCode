@@ -11,11 +11,11 @@ import static org.junit.Assert.*;
  */
 public class GroceryStoreTest {
 
-    LoyaltyCard testCard;
-    GroceryStore testStore;
-    Customer testCustomer;
-    String barCode;
-    String anotherBarCode;
+    private LoyaltyCard testCard;
+    private GroceryStore testStore;
+    private Customer testCustomer;
+    private String barCode;
+    private String anotherBarCode;
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
@@ -26,7 +26,7 @@ public class GroceryStoreTest {
         anotherBarCode = "546879546";
         testCard = new LoyaltyCard(barCode, 0);
         testStore = new GroceryStore();
-        testCustomer = new Customer(testCard, "David");
+        testCustomer = new Customer(testCard);
 
     }
 

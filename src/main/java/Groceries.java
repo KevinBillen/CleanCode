@@ -16,20 +16,24 @@ public class Groceries {
         return shoppingCart;
     }
 
-    public void buyItem(String item, int quantity) {
-        if (shoppingCart.containsKey(item)) {
-            updateItem(item, quantity);
+    public void addToShoppingCart(String item, int quantity) {
+        if (itemIsAlreadyIsShoppingCart(item)) {
+            updateAmount(item, quantity);
         } else {
-            addItem(item, quantity);
+            storeInShoppingCart(item, quantity);
         }
     }
 
-    private void addItem(String item, int quantity) {
+    private boolean itemIsAlreadyIsShoppingCart(String item) {
+        return shoppingCart.containsKey(item);
+    }
+
+    private void storeInShoppingCart(String item, int quantity) {
         shoppingCart.put(item, quantity);
     }
 
-    private void updateItem(String item, int quantity) {
-        int temp = shoppingCart.get(item);
-        addItem(item, temp+quantity);
+    private void updateAmount(String item, int quantity) {
+        int newAmount = shoppingCart.get(item) + quantity;
+        storeInShoppingCart(item, newAmount);
     }
 }
