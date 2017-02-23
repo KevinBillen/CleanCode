@@ -17,14 +17,14 @@ public class Groceries {
     }
 
     public void addToShoppingCart(String item, int quantity) {
-        if (itemIsAlreadyIsShoppingCart(item)) {
+        if (itemIsAlreadyInShoppingCart(item)) {
             updateAmount(item, quantity);
         } else {
             storeInShoppingCart(item, quantity);
         }
     }
 
-    private boolean itemIsAlreadyIsShoppingCart(String item) {
+    private boolean itemIsAlreadyInShoppingCart(String item) {
         return shoppingCart.containsKey(item);
     }
 
