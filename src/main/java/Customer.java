@@ -1,57 +1,39 @@
-package main.java;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Created by kevinbi on 23/02/2017.
+ * Created by davids on 23/02/2017.
  */
 public class Customer {
 
+    private LoyaltyCard loyaltyCard;
     private String name;
-    private String barcode;
+    private Map<LocalDate, Groceries> groceriesHistory;
 
-    public Customer() {
-        this.name = null;
-        this.barcode = null;
+    public Customer(LoyaltyCard loyaltyCard, String name) {
+        this.loyaltyCard = loyaltyCard;
+        this.name = name;
+        this.groceriesHistory = new HashMap<>();
     }
 
-    public Customer(String name, String barcode) {
-        this.name = name;
-        this.barcode = barcode;
+    public LoyaltyCard getLoyaltyCard() {
+        return loyaltyCard;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void addGrocery(LocalDate date, Groceries groceries) throws Exception{
+        if (groceriesHistory.containsKey(date)) {
+            throw new Exception("Not allowed");
+        } else {
+            groceriesHistory.put(date, groceries);
+        }
     }
 
-    public String getBarcode() {
-        return barcode;
-    }
-
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Customer customer = (Customer) o;
-
-        if (name != null ? !name.equals(customer.name) : customer.name != null) return false;
-        return barcode != null ? barcode.equals(customer.barcode) : customer.barcode == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (barcode != null ? barcode.hashCode() : 0);
-        return result;
-    }
-
-    public static void addCustomer(Customer aCustomer) {
+    public Map<LocalDate, Groceries> getGroceriesHistory() {
+        return groceriesHistory;
     }
 }
